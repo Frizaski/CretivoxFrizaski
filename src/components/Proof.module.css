@@ -1,0 +1,324 @@
+.proofSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000000; /* Pure black background matching About */
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 0 8vw;
+  z-index: 5;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Phase 1: Center Initial Heading Wrapper */
+.initialHeadingWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.initialHeadingText {
+  font-family: var(--font-headings);
+  font-size: 3.4rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  max-width: 900px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+/* Scroll Scrubbing Word Reveal */
+.word {
+  opacity: 0.15; /* dimmed baseline */
+  display: inline-block;
+  margin-right: 0.45rem;
+  white-space: pre-wrap;
+}
+
+/* Phase 2: Panels Stack (Absolute Overlays) */
+.panelsStack {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Project Panel Layout */
+.projectPanel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 3rem;
+  z-index: 10;
+}
+
+/* Image container styling matching About photo's high-end feel */
+.imgContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.imageLink {
+  width: 100%;
+  max-width: 540px;
+  display: block;
+  cursor: pointer;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageLink:hover {
+  transform: scale(1.025);
+}
+
+.imgContainerInner {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #050505;
+  position: relative;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  will-change: transform;
+}
+
+/* Details and texts column */
+.textDetailsColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 580px;
+}
+
+.roleText {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+  font-family: var(--font-headings);
+}
+
+.titleText {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 3.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.titleLink {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.titleLink:hover {
+  color: #0000ff; /* Solid blue hover accent */
+}
+
+.descParagraph {
+  font-family: var(--font-body);
+  font-size: 1.55rem;
+  line-height: 1.6;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.descParagraphMargin {
+  margin-bottom: 2rem;
+}
+
+/* Scroll Scrubbing Description Word Reveal */
+.descWord {
+  opacity: 0.15; /* dimmed baseline */
+  display: inline-block;
+  margin-right: 0.38rem;
+  white-space: pre-wrap;
+}
+
+.toolsHeader {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-headings);
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: transparent;
+  border: 1px solid #ffffff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: var(--font-body);
+}
+
+/* Responsive Overrides matching About structure & Laptop views */
+@media (max-width: 1400px), (max-height: 850px) {
+  .projectPanel {
+    padding: 2rem 3rem;
+    gap: 2.5rem;
+    max-width: 1050px;
+  }
+  .imgContainerInner {
+    max-width: 440px;
+  }
+  .titleText {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+  .descParagraph {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  .descParagraphMargin {
+    margin-bottom: 1.25rem;
+  }
+  .roleText {
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+  }
+  .toolsHeader {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+  .tag {
+    padding: 0.35rem 1.2rem;
+    font-size: 0.8rem;
+  }
+  .initialHeadingText {
+    font-size: 2.6rem;
+  }
+}
+
+@media (max-height: 720px) {
+  .projectPanel {
+    padding: 1rem 2rem;
+    gap: 1.5rem;
+    max-width: 950px;
+  }
+  .imgContainerInner {
+    max-width: 360px;
+  }
+  .titleText {
+    font-size: 1.85rem;
+    margin-bottom: 0.75rem;
+  }
+  .descParagraph {
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+  .descParagraphMargin {
+    margin-bottom: 1rem;
+  }
+  .roleText {
+    font-size: 0.85rem;
+  }
+  .toolsHeader {
+    font-size: 0.85rem;
+  }
+  .tag {
+    padding: 0.25rem 1rem;
+    font-size: 0.75rem;
+  }
+  .initialHeadingText {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 968px) {
+  .container {
+    padding: 0 4%;
+  }
+  .projectPanel {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+    align-content: center;
+    max-width: 100%;
+  }
+  .imgContainerInner {
+    max-width: 480px;
+  }
+  .descParagraph {
+    font-size: 1.1rem;
+  }
+  .initialHeadingText {
+    font-size: 2.2rem;
+  }
+  .titleText {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .descParagraphMargin {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sideLabelContainer {
+    display: none;
+  }
+  .container {
+    padding: 0 1.5rem;
+  }
+  .initialHeadingText {
+    font-size: 1.85rem;
+  }
+  .descParagraph {
+    font-size: 0.95rem;
+  }
+  .titleText {
+    font-size: 1.6rem;
+  }
+}

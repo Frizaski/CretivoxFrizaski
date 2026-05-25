@@ -1,0 +1,392 @@
+.infoPageContainer {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #030303;
+  color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.contentOverlay {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem 5rem;
+  box-sizing: border-box;
+}
+
+/* Header Bar Styling */
+.headerBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.infoTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.backButton {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.backButton:hover {
+  color: #0088ff;
+  transform: translateX(-4px);
+}
+
+/* Main Grid Layout */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 6rem;
+  align-items: flex-start;
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: 3rem;
+}
+
+/* Left Column: Portrait */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 420px;
+  width: 100%;
+}
+
+.portraitWrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Blue Wash Glow behind portrait card */
+.photoGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130%;
+  height: 130%;
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.22) 0%, transparent 65%);
+  filter: blur(50px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.portraitContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: visible;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #0c0c0c;
+}
+
+.portraitImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Corner Marker Decorators */
+.cornerMarker {
+  position: absolute;
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.topLeft {
+  top: -8px;
+  left: -8px;
+}
+
+.topRight {
+  top: -8px;
+  right: -8px;
+}
+
+.bottomLeft {
+  bottom: -8px;
+  left: -8px;
+}
+
+.bottomRight {
+  bottom: -8px;
+  right: -8px;
+}
+
+/* Metadata fields styling */
+.metadataContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+}
+
+.metadataRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.metadataLabel {
+  color: #777777;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.metadataValue {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Right Column: Bio & Stack */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.aboutWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.categoryLabel {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #777777;
+}
+
+.nameHeader {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.bioText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+.bioText p {
+  margin: 0;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.bioText em {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: #ffffff;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  margin: 3rem 0;
+}
+
+/* Technical Stack Grid layout */
+.techStackGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+.stackColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.stackCategory {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #777777;
+  margin: 0;
+}
+
+.stackList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.stackList li {
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.stackList li:hover {
+  color: #0088ff;
+}
+
+/* Footer Section Styling */
+.footerBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+  margin-top: auto;
+}
+
+.emailFooter {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.emailFooter:hover {
+  color: #0088ff;
+  transform: translateY(-2px);
+}
+
+.versionTag {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555555;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .contentOverlay {
+    padding: 2rem 3rem;
+  }
+  
+  .mainGrid {
+    gap: 4rem;
+  }
+  
+  .nameHeader {
+    font-size: 3.2rem;
+  }
+  
+  .bioText {
+    font-size: 1.1rem;
+  }
+  
+  .techStackGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .infoPageContainer {
+    overflow-y: auto;
+  }
+  
+  .contentOverlay {
+    padding: 1.5rem;
+  }
+  
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .leftCol {
+    max-width: 100%;
+    align-items: center;
+  }
+  
+  .portraitWrapper {
+    max-width: 320px;
+  }
+  
+  .metadataContainer {
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .nameHeader {
+    font-size: 2.8rem;
+  }
+  
+  .divider {
+    margin: 2rem 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .infoTitle {
+    font-size: 2.5rem;
+  }
+  
+  .nameHeader {
+    font-size: 2.2rem;
+  }
+  
+  .techStackGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

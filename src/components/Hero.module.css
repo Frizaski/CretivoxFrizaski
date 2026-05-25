@@ -1,0 +1,123 @@
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 75% 30%, #051e52 0%, #02091c 60%, #000000 100%);
+  user-select: none;
+}
+
+/* Center Image Container for the SVG */
+.imageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: block;
+}
+
+.imageSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* Floating Left Panel: Social Links */
+.socialLinks {
+  position: absolute;
+  left: 3.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  z-index: 10;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #555555; /* dark gray at first */
+  font-family: var(--font-headings);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+.socialIcon {
+  color: #555555; /* dark gray at first */
+  transition: color 0.3s ease;
+}
+
+.socialLink:hover {
+  color: var(--text-primary);
+  transform: translateX(6px);
+}
+
+.socialLink:hover .socialIcon {
+  color: #0000FF; /* blue, not purple */
+}
+
+/* Stretch text overlaid on the photo */
+.stretchTextWrapper {
+  position: absolute;
+  top: 72%; /* moved lower down, near the chest/bottom of photo */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: visible;
+}
+
+.stretchTextMask {
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.stretchText {
+  font-family: var(--font-headings);
+  font-size: 8.5vw;
+  font-weight: 900;
+  color: #ffffff; /* bright white only */
+  text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  transform-origin: center;
+  display: inline-block;
+}
+
+/* Responsiveness adjustments */
+@media (max-width: 900px) {
+  .socialLinks {
+    left: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide side floating decorations on small mobile viewports to prevent layout overlap */
+  .socialLinks {
+    display: none;
+  }
+  .stretchText {
+    font-size: 10vw; /* slightly larger on mobile to stand out */
+  }
+}
+

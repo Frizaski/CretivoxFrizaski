@@ -1,0 +1,90 @@
+.progressContainer {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  z-index: 999;
+}
+
+.segmentWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: transform 0.2s ease;
+}
+
+.segmentWrapper:hover {
+  transform: scaleX(1.1);
+}
+
+.label {
+  font-family: var(--font-headings);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.labelActive {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.trackLine {
+  width: 2px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.segmentWrapper:hover .trackLine {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 3px;
+}
+
+.fillLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  height: 0%;
+  will-change: height;
+}
+
+/* Glowing active track */
+.trackActive {
+  width: 3px;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .progressContainer {
+    right: 20px;
+    gap: 6px;
+  }
+  .trackLine {
+    height: 30px;
+    width: 2px;
+  }
+  .label {
+    font-size: 0.75rem;
+  }
+}
