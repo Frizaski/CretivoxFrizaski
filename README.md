@@ -1,45 +1,114 @@
-# Frizaski Al Fath — Interactive GSAP Portfolio
+# Introduction Frizaski
 
-An immersive, highly interactive, and motion-heavy personal portfolio website custom-tailored for the **Front-End Developer** internship application at **Cretivox**. Built using Next.js, React, and TypeScript, and powered by GSAP for premium web animation flows.
+Website portfolio interaktif milik **Frizaski Al Fath** untuk Endurance Test
+Intern Front-End Developer di **Cretivox**. Project ini menampilkan perjalanan,
+project, dan sisi kreatif melalui pengalaman scroll berbasis animasi.
 
-## 🚀 Key Visual & Motion Features
+## Fitur Utama
 
-- **Liquid SVG Cursor Mask** (Hero Section): A fluid liquid gooey filter mask that dynamically stretches and morphs to follow the cursor movement.
-- **3D Parallax Panels** (Proof/Projects Section): Custom 3D tilt-and-parallax layers that transition and reveal project details on scroll.
-- **Smooth Scroll Transitions** (Sisi Lain Section): Sequenced image-stack swaps tracking active categories on scroll.
-- **Hover-Triggered Image Trail** (Perjalanan Section): A dynamic photo trail that spawns journey snapshots at the cursor coordinates as the mouse hovers over the viewport, with a scroll-pinned word-by-word reveal text overlay.
-- **Interactive WebGL Line Waves** (Info Page Background): WebGL shader wave meshes utilizing the low-level graphics library `ogl` that warp and color-cycle in response to cursor positions.
-- **Smooth Scrolling**: Powered by **Lenis** scroll-inertia engine for seamless frame rates and uniform scroll feel.
+- **Hero interaktif** dengan liquid SVG cursor mask dan pergantian portrait saat
+  cursor bergerak.
+- **Section About** dengan reveal teks per kata dan transisi foto berbasis
+  scroll.
+- **Login gate** setelah About. Bagian portfolio lanjutan baru dirender setelah
+  login berhasil menggunakan API DummyJSON.
+- **Proof of Work** dengan panel project yang dipin dan dianimasikan memakai
+  GSAP ScrollTrigger.
+- **Sisi Lain** dengan pergantian karya visual dan video mengikuti scroll.
+- **Perjalanan** dengan image trail mengikuti cursor menggunakan thumbnail WebP
+  teroptimasi.
+- **Penutupan dan Contact** dengan sequence entrance scroll serta informasi
+  kontak.
+- Halaman **Info** dengan background shader interaktif berbasis OGL/WebGL.
+- Smooth scrolling berbasis **Lenis** yang disinkronkan dengan GSAP.
 
-## 🛠️ Tech Stack
+## Teknologi
 
-- **Core Framework**: [Next.js v16 (App Router)](https://nextjs.org/) + React 19 + TypeScript
-- **Animation Engine**: [GSAP](https://gsap.com/) & `@gsap/react` (GSAP ScrollTrigger)
-- **WebGL Rendering**: [ogl](https://github.com/oogl/ogl)
-- **Scroll Inertia**: [Lenis](https://lenis.darkroom.engineering/)
-- **Iconography**: [Lucide React](https://lucide.dev/)
-- **Styling**: Vanilla CSS Modules (custom variables, HSL color palettes, responsive flex/grid layouts)
+- Next.js 16 App Router
+- React 19 dan TypeScript
+- GSAP, `@gsap/react`, dan ScrollTrigger
+- Lenis
+- OGL / WebGL shader
+- CSS Modules
+- Lucide React
 
-## 📦 Installation & Setup
+## Autentikasi Demo
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Frizaski/CretivoxFrizaski.git
-   cd CretivoxFrizaski
-   ```
+Section setelah About terkunci sampai pengguna berhasil login. Form login
+memanggil endpoint berikut:
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+```text
+POST https://dummyjson.com/user/login
+```
 
-3. **Run the development server**:
-   ```bash
-   npm run dev
-   ```
-   Open `http://localhost:3000` in your browser.
+Credential demo:
 
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
+```text
+Username: emilys
+Password: emilyspass
+```
+
+Setelah login berhasil, `accessToken` dan `refreshToken` disimpan di
+`localStorage` browser untuk mempertahankan akses saat halaman dimuat ulang.
+Fitur ini dibuat sebagai demonstrasi autentikasi untuk kebutuhan test; proteksi
+data aplikasi produksi tetap perlu dilakukan di sisi server.
+
+## Menjalankan Project
+
+Persyaratan:
+
+- Node.js versi modern yang mendukung Next.js 16
+- npm
+
+Jalankan perintah berikut:
+
+```bash
+npm install
+npm run dev
+```
+
+Buka `http://localhost:3000` pada browser.
+
+Pengecekan sebelum deployment:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Struktur Folder
+
+```text
+public/
+  Assets/                   foto profil dan logo
+  Fierce Frizaski Al Fath/  visual hero
+  Journey/                  dokumentasi perjalanan
+    trail/                  thumbnail WebP ringan untuk ImageTrail
+  Projects/                 preview project
+  Sisi Lain/                media kemampuan kreatif
+src/
+  app/                      route, layout, dan style global
+  components/               section UI, animasi, auth, dan utilitas interaksi
+  data/                     data konten statis untuk section
+```
+
+## Alur Halaman
+
+1. `Hero`
+2. `About`
+3. `Login`
+4. `Proof` setelah login
+5. `Sisi Lain`
+6. `Perjalanan`
+7. `Penutupan`
+8. `Contact`
+
+## Deployment Vercel
+
+Cara paling sederhana adalah mendorong repository ke GitHub, lalu mengimpor
+repository tersebut melalui dashboard Vercel. Vercel akan otomatis mendeteksi
+framework Next.js dan menjalankan production build.
+
+Login demo tetap dapat digunakan saat website sudah dideploy karena request
+autentikasi dikirim dari browser ke API publik DummyJSON melalui HTTPS.
+

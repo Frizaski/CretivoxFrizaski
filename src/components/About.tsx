@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -136,11 +137,13 @@ export default function About() {
             <div className={styles.photoWrapper}>
               <div className={styles.photoGlow} />
               <div className={styles.photoContainer}>
-                <img
+                <Image
                   ref={photoRef}
                   src="/Assets/Frizaski.jpg"
                   alt="Frizaski Al Fath"
                   className={styles.photo}
+                  fill
+                  sizes="(max-width: 968px) 380px, 44vw"
                 />
               </div>
             </div>

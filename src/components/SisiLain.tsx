@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,11 +17,6 @@ interface SkillItem {
 export default function SisiLain() {
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const skills: SkillItem[] = [
     {
@@ -52,7 +47,7 @@ export default function SisiLain() {
   ];
 
   useGSAP(() => {
-    if (!mounted || !sectionRef.current) return;
+    if (!sectionRef.current) return;
 
     const skillItems = sectionRef.current.querySelectorAll(".sisilain-skill-item");
     const imageItems = sectionRef.current.querySelectorAll(".sisilain-image-item");
@@ -124,11 +119,7 @@ export default function SisiLain() {
     return () => {
       clearTimeout(timer);
     };
-  }, [mounted]);
-
-  if (!mounted) {
-    return <section id="sisilain" style={{ minHeight: "100vh", backgroundColor: "#000000" }} />;
-  }
+  }, { scope: sectionRef });
 
   return (
     <section ref={sectionRef} id="sisilain" className={styles.sisiLainSection}>
@@ -137,7 +128,7 @@ export default function SisiLain() {
           {/* Left Column: Image Stack */}
           <div className={styles.leftCol}>
             <div className={styles.imageStackWrapper}>
-              {skills.map((skill, index) => (
+              {skills.map((skill) => (
                 <div
                   key={skill.id}
                   className={`sisilain-image-item ${styles.imageItem}`}

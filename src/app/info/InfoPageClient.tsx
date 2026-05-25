@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import LineWaves from "@/components/LineWaves";
 import styles from "./info.module.css";
 
@@ -53,10 +54,12 @@ export default function InfoPageClient() {
                 <span className={`${styles.cornerMarker} ${styles.bottomRight}`}>+</span>
 
                 {/* Profile Image */}
-                <img
+                <Image
                   src="/Assets/Frizaski.jpg"
                   alt="Frizaski Al Fath"
                   className={styles.portraitImg}
+                  fill
+                  sizes="(max-width: 860px) 320px, 420px"
                 />
               </div>
             </div>

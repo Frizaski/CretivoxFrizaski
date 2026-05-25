@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Mail, Phone, ArrowDown } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import styles from "./Hero.module.css";
 
 // Custom LinkedIn SVG icon since brand icons are removed in recent lucide-react versions
@@ -32,22 +32,6 @@ export default function Hero() {
   // Keep track of the active B&W photo cycling interval and state via refs
   const cycleIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const activeBwIndexRef = useRef<number>(0);
-
-  const handleScrollToAbout = () => {
-    const target = document.getElementById("about");
-    if (target) {
-      const offset = 100;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = target.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
 
   useGSAP(() => {
     // Select the circles in the SVG defs group
@@ -336,4 +320,3 @@ export default function Hero() {
     </section>
   );
 }
-

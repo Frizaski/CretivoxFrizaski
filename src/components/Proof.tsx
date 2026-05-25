@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -23,11 +23,6 @@ interface ProjectItem {
 export default function Proof() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const projects: ProjectItem[] = [
     {
@@ -102,7 +97,7 @@ export default function Proof() {
   const initialWords = initialText.split(" ");
 
   useGSAP(() => {
-    if (!mounted || !sectionRef.current || !headingRef.current) return;
+    if (!sectionRef.current || !headingRef.current) return;
 
     const initialHeadingWords = headingRef.current.querySelectorAll(".proof-word");
     const projectPanels = sectionRef.current.querySelectorAll(".proof-project-panel");
@@ -276,12 +271,7 @@ export default function Proof() {
     return () => {
       clearTimeout(timer);
     };
-  }, [mounted]);
-
-  if (!mounted) {
-    // Render static black placeholder during SSR & hydration to prevent layout shift and insertBefore errors
-    return <section id="portfolio" style={{ minHeight: "100vh", backgroundColor: "#000000" }} />;
-  }
+  }, { scope: sectionRef });
 
   return (
     <section ref={sectionRef} id="portfolio" className={styles.proofSection}>

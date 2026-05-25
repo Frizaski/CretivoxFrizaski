@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,15 +15,10 @@ export default function Contact() {
   const touchRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useGSAP(
     () => {
-      if (!mounted || !containerRef.current) return;
+      if (!containerRef.current) return;
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -55,12 +51,8 @@ export default function Contact() {
         0.5 // Start halfway through the animation
       );
     },
-    { dependencies: [mounted], scope: containerRef }
+    { scope: containerRef }
   );
-
-  if (!mounted) {
-    return <footer id="contact" style={{ minHeight: "100vh", backgroundColor: "#050505" }} />;
-  }
 
   return (
     <footer ref={containerRef} id="contact" className={styles.contactSection}>
@@ -108,10 +100,13 @@ export default function Contact() {
           </h1>
         </div>
         <div ref={touchRef} className={styles.rightTextRow}>
-          <img
+          <Image
             src="/Assets/Logo Cretivox - Black.png"
             alt="Cretivox"
             className={styles.cretivoxLogo}
+            width={8000}
+            height={1938}
+            sizes="(max-width: 640px) 65vw, 60vw"
           />
         </div>
       </div>
