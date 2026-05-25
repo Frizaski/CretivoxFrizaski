@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./ScrollProgress.module.css";
 
 interface SectionItem {
@@ -8,50 +9,49 @@ interface SectionItem {
   label: string;
 }
 
-export default function ScrollProgress() {
-  const [mounted, setMounted] = useState(false);
+const defaultSections: SectionItem[] = [
+  { id: "hero", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "portfolio", label: "Proof" },
+  { id: "sisilain", label: "Sisi Lain" },
+  { id: "perjalanan", label: "Perjalanan" },
+  { id: "penutupan", label: "Penutupan" },
+  { id: "contact", label: "Contact" },
+];
+
+interface ScrollProgressProps {
+  sections?: SectionItem[];
+}
+
+export default function ScrollProgress({ sections = defaultSections }: ScrollProgressProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [progresses, setProgresses] = useState<number[]>([]);
-
-  const sections: SectionItem[] = [
-    { id: "hero", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "portfolio", label: "Proof" },
-    { id: "sisilain", label: "Sisi Lain" },
-    { id: "perjalanan", label: "Perjalanan" },
-    { id: "contact", label: "Contact" },
-  ];
+  const [progresses, setProgresses] = useState<number[]>(() => new Array(sections.length).fill(0));
 
   useEffect(() => {
-    setMounted(true);
-    setProgresses(new Array(sections.length).fill(0));
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
       if (docHeight <= 0) return;
 
-      const offsets = sections.map((sec) => {
+      const offsets = sections.map((sec, index) => {
         const el = document.getElementById(sec.id);
         if (!el) return 0;
-        
+
         let target = el;
-        // If the element is pinned by GSAP, its parent is the pin-spacer.
-        // The pin-spacer holds the static document-flow position.
         if (el.parentElement && el.parentElement.classList.contains("pin-spacer")) {
           target = el.parentElement;
         }
-        
-        return target.getBoundingClientRect().top + window.scrollY;
+
+        const flowTop = target.getBoundingClientRect().top + window.scrollY;
+        if (index === 0) return 0;
+
+        // Change focus when an incoming scene reaches the middle of the viewport.
+        return Math.max(0, flowTop - window.innerHeight * 0.5);
       });
 
       let currentActiveIdx = 0;
-      const nextProgresses = sections.map((sec, j) => {
+      const nextProgresses = sections.map((_, j) => {
         const start = offsets[j];
         const end =
           j === sections.length - 1
@@ -66,7 +66,7 @@ export default function ScrollProgress() {
         }
 
         currentActiveIdx = j;
-        return (scrollY - start) / (end - start);
+        return (scrollY - start) / Math.max(end - start, 1);
       });
 
       // Special case: if at bottom of page
@@ -79,24 +79,29 @@ export default function ScrollProgress() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    ScrollTrigger.addEventListener("refresh", handleScroll);
+    const refreshId = window.requestAnimationFrame(() => ScrollTrigger.refresh());
     handleScroll();
 
-    window.addEventListener("resize", handleScroll);
-
     return () => {
+      window.cancelAnimationFrame(refreshId);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      ScrollTrigger.removeEventListener("refresh", handleScroll);
     };
-  }, [mounted]);
+  }, [sections]);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      const target =
+        el.parentElement && el.parentElement.classList.contains("pin-spacer")
+          ? el.parentElement
+          : el;
+      target.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  if (!mounted) return null;
 
   return (
     <div className={styles.progressContainer}>

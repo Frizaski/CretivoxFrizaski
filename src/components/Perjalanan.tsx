@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,11 +17,6 @@ interface GalleryItem {
 
 export default function Perjalanan() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const galleryItems: GalleryItem[] = [
     {
@@ -187,10 +182,14 @@ export default function Perjalanan() {
   const subtitleText = "Karena hidup nggak selalu berjalan di dalam fungsi loop. Ini adalah kepingan memori, interaksi, dan langkah gue di dunia nyata.";
   const subtitleWords = subtitleText.split(" ");
 
-  const imageUrls = galleryItems.map(item => item.imageUrl);
+  const imageUrls = galleryItems.map((item) =>
+    item.imageUrl
+      .replace("/Journey/", "/Journey/trail/")
+      .replace(/\.[^.]+$/, ".webp")
+  );
 
   useGSAP(() => {
-    if (!mounted || !sectionRef.current) return;
+    if (!sectionRef.current) return;
 
     const headingWordEls = sectionRef.current.querySelectorAll(".journey-heading-word");
     const subtitleWordEls = sectionRef.current.querySelectorAll(".journey-subtitle-word");
@@ -236,18 +235,13 @@ export default function Perjalanan() {
     return () => {
       clearTimeout(timer);
     };
-  }, [mounted]);
-
-  if (!mounted) {
-    // Render static black placeholder during SSR & hydration to prevent layout shift and insertBefore errors
-    return <section id="perjalanan" style={{ minHeight: "100vh", backgroundColor: "#000000" }} />;
-  }
+  }, { scope: sectionRef });
 
   return (
     <section ref={sectionRef} id="perjalanan" className={styles.journeySection}>
       {/* Background ImageTrail Component */}
       <div className={styles.trailBackground}>
-        <ImageTrail items={imageUrls} variant="1" />
+        <ImageTrail items={imageUrls} interactionTargetRef={sectionRef} />
       </div>
 
       {/* Vignette Overlay */}

@@ -69,7 +69,7 @@ export default function Contact() {
         <div className={styles.galleryImageWrapper1}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/Journey/WhatsApp Image 2026-03-22 at 4.31.35 PM.jpeg"
+            src="/Contact/3.jpeg"
             alt="Gallery 1"
             className={styles.galleryImage}
           />
@@ -77,7 +77,7 @@ export default function Contact() {
         <div className={styles.galleryImageWrapper2}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/Journey/WhatsApp Image 2026-03-22 at 4.32.14 PM (2).jpeg"
+            src="/Contact/4.jpeg"
             alt="Gallery 2"
             className={styles.galleryImage}
           />
@@ -85,7 +85,7 @@ export default function Contact() {
         <div className={styles.galleryImageWrapper3}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/Journey/WhatsApp Image 2026-03-22 at 4.32.15 PM.jpeg"
+            src="/Contact/3.jpeg"
             alt="Gallery 3"
             className={styles.galleryImage}
           />
@@ -93,7 +93,7 @@ export default function Contact() {
         <div className={styles.galleryImageWrapper4}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/Journey/WhatsApp Image 2026-03-22 at 4.32.17 PM.jpeg"
+            src="/Contact/2.jpeg"
             alt="Gallery 4"
             className={styles.galleryImage}
           />
@@ -108,9 +108,11 @@ export default function Contact() {
           </h1>
         </div>
         <div ref={touchRef} className={styles.rightTextRow}>
-          <h1 className={styles.giantHeading}>
-            Cretivox
-          </h1>
+          <img
+            src="/Assets/Logo Cretivox - Black.png"
+            alt="Cretivox"
+            className={styles.cretivoxLogo}
+          />
         </div>
       </div>
 

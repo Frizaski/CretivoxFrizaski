@@ -17,7 +17,8 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0; /* Animated by GSAP */
+  opacity: 0;
+  /* Animated by GSAP */
   pointer-events: none;
 }
 
@@ -117,6 +118,14 @@
   text-transform: uppercase;
   color: #ffffff;
   text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.cretivoxLogo {
+  height: clamp(5.5rem, 13vw, 15rem);
+  width: auto;
+  object-fit: contain;
+  filter: invert(1);
+  display: block;
 }
 
 /* Contact Info (revealed at the end) */
@@ -223,12 +232,16 @@
 
 /* Responsive adjustments */
 @media (max-width: 968px) {
-  .emailLink, .phoneLink {
+
+  .emailLink,
+  .phoneLink {
     font-size: 3rem;
   }
+
   .arrow {
     font-size: 1.8rem;
   }
+
   .socialRow {
     padding: 0 12px;
     font-size: 1.2rem;
@@ -236,21 +249,31 @@
 }
 
 @media (max-width: 640px) {
-  .emailLink, .phoneLink {
+
+  .emailLink,
+  .phoneLink {
     font-size: 2rem;
   }
+
   .giantHeading {
-    font-size: 14vw;
+    font-size: 13vw;
   }
+
+  .cretivoxLogo {
+    height: 19vw;
+  }
+
   .arrow {
     font-size: 1.2rem;
   }
+
   .socialRow {
     flex-direction: column;
     align-items: center;
     gap: 16px;
     font-size: 1.1rem;
   }
+
   .copyrightBar {
     padding: 0 24px;
     flex-direction: column;

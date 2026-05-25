@@ -27,27 +27,27 @@ export default function SisiLain() {
     {
       id: 1,
       name: "Graphic Design",
-      imageUrl: "/Projects/cscorp.png",
+      imageUrl: "/Sisi Lain/graphic_design.png",
     },
     {
       id: 2,
       name: "Branding",
-      imageUrl: "/Projects/bgeo.png",
+      imageUrl: "/Sisi Lain/branding.png",
     },
     {
       id: 3,
       name: "UI/UX",
-      imageUrl: "/Projects/satriacnm.png",
+      imageUrl: "/Sisi Lain/uiux.png",
     },
     {
       id: 4,
       name: "Motion Graphics",
-      imageUrl: "/Projects/solarverse.png",
+      imageUrl: "/Sisi Lain/motion.mp4",
     },
     {
       id: 5,
       name: "Video Editor",
-      imageUrl: "/Projects/ramenramein.png",
+      imageUrl: "/Sisi Lain/video.mp4",
     },
   ];
 
@@ -142,12 +142,23 @@ export default function SisiLain() {
                   key={skill.id}
                   className={`sisilain-image-item ${styles.imageItem}`}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={skill.imageUrl}
-                    alt={skill.name}
-                    className={styles.skillImage}
-                  />
+                  {skill.imageUrl.endsWith(".mp4") ? (
+                    <video
+                      src={skill.imageUrl}
+                      className={styles.skillImage}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  ) : (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={skill.imageUrl}
+                      alt={skill.name}
+                      className={styles.skillImage}
+                    />
+                  )}
                 </div>
               ))}
             </div>

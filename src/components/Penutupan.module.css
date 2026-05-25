@@ -1,0 +1,116 @@
+.penutupanSection {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 8vh 8vw;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+}
+
+.mainText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.lineWrap {
+  display: block;
+  overflow: hidden;
+  line-height: 0.86;
+  padding: 0 0.04em;
+}
+
+.lineRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.readyRow,
+.cretivoxRow {
+  align-self: center;
+}
+
+.mainLine {
+  display: block;
+  font-size: clamp(3.75rem, 11vw, 10.75rem);
+  font-family: var(--font-headings);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: -0.04em;
+  line-height: 0.86;
+  white-space: nowrap;
+  will-change: transform;
+  text-align: center;
+}
+
+.accentLeft,
+.accentRight {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: clamp(0.65rem, 0.86vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.52);
+  line-height: 1.25;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
+.accentLeft {
+  right: calc(100% + clamp(0.9rem, 1.8vw, 1.75rem));
+  top: 20%;
+}
+
+.accentRight {
+  left: calc(100% + clamp(0.9rem, 1.8vw, 1.75rem));
+  top: 47%;
+}
+
+@media (max-width: 900px) {
+  .penutupanSection {
+    padding: 8vh 12vw;
+  }
+
+  .mainLine {
+    font-size: clamp(3rem, 13vw, 7rem);
+  }
+}
+
+@media (max-width: 540px) {
+  .penutupanSection {
+    padding: 8vh 10vw;
+  }
+
+  .mainLine {
+    font-size: clamp(2.2rem, 12vw, 5rem);
+  }
+
+  .accentLeft,
+  .accentRight {
+    font-size: 0.52rem;
+    letter-spacing: 0.15em;
+  }
+
+  .accentLeft {
+    right: calc(100% + 0.45rem);
+  }
+
+  .accentRight {
+    left: calc(100% + 0.45rem);
+  }
+}

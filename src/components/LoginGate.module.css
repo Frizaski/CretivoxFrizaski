@@ -1,0 +1,232 @@
+.loginSection {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #000000;
+  overflow: hidden;
+  padding: 5rem 7vw;
+}
+
+.glow {
+  position: absolute;
+  width: min(55vw, 760px);
+  height: min(55vw, 760px);
+  right: -18vw;
+  top: 10%;
+  background: radial-gradient(circle, rgba(0, 80, 255, 0.22) 0%, transparent 68%);
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(360px, 460px);
+  align-items: center;
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+.intro {
+  max-width: 620px;
+}
+
+.eyebrow,
+.cardLabel {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #71717a;
+}
+
+.heading {
+  margin: 1.3rem 0 1.8rem;
+  font-family: var(--font-headings);
+  font-size: clamp(4.25rem, 8.3vw, 8.5rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+.heading span {
+  color: #0000ff;
+}
+
+.description {
+  max-width: 475px;
+  color: #a1a1aa;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.card {
+  position: relative;
+  padding: clamp(2rem, 4vw, 2.75rem);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background: rgba(10, 10, 13, 0.78);
+  backdrop-filter: blur(14px);
+}
+
+.iconBadge {
+  height: 46px;
+  width: 46px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(0, 88, 255, 0.45);
+  border-radius: 50%;
+  color: #ffffff;
+  background: rgba(0, 48, 255, 0.16);
+}
+
+.cardTitle,
+.welcome {
+  font-size: clamp(1.7rem, 3vw, 2.15rem);
+  font-weight: 600;
+  margin: 0.7rem 0 2.1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  color: #8b8b94;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.field input {
+  height: 54px;
+  padding: 0 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.035);
+  color: #ffffff;
+  font: 500 1rem var(--font-body);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.field input:focus {
+  border-color: #0000ff;
+  background: rgba(0, 40, 255, 0.09);
+}
+
+.error {
+  margin: 0.1rem 0 1.1rem;
+  color: #fb7185;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.submitButton {
+  height: 56px;
+  margin-top: 0.75rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  border: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #050505;
+  cursor: pointer;
+  font: 700 0.9rem var(--font-body);
+  letter-spacing: 0.04em;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #0000ff;
+  color: #ffffff;
+}
+
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.hint {
+  margin-top: 1.6rem;
+  text-align: center;
+  font-size: 0.76rem;
+  color: #71717a;
+}
+
+.hint strong {
+  color: #c4c4ca;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+}
+
+.success .welcome {
+  margin-bottom: 1rem;
+}
+
+.message {
+  margin-bottom: 1.3rem;
+  color: #a1a1aa;
+}
+
+.logoutButton {
+  margin: 1.5rem auto 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 0;
+  background: transparent;
+  color: #71717a;
+  cursor: pointer;
+  font: 600 0.82rem var(--font-body);
+  transition: color 0.2s ease;
+}
+
+.logoutButton:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .loginSection {
+    padding: 5rem 1.5rem;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .card {
+    width: min(100%, 480px);
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: clamp(3.1rem, 21vw, 4.5rem);
+  }
+
+  .container {
+    gap: 2.4rem;
+  }
+}
