@@ -128,6 +128,41 @@
   background: rgba(0, 40, 255, 0.09);
 }
 
+.passwordInput {
+  position: relative;
+}
+
+.passwordInput input {
+  width: 100%;
+  padding-right: 3.1rem;
+}
+
+.visibilityButton {
+  position: absolute;
+  top: 50%;
+  right: 0.95rem;
+  display: grid;
+  place-items: center;
+  border: 0;
+  padding: 0.2rem;
+  background: transparent;
+  color: #8b8b94;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: color 0.2s ease;
+}
+
+.visibilityButton:hover,
+.visibilityButton:focus-visible {
+  color: #ffffff;
+}
+
+.visibilityButton:focus-visible {
+  outline: 2px solid #0000ff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 .error {
   margin: 0.1rem 0 1.1rem;
   color: #fb7185;

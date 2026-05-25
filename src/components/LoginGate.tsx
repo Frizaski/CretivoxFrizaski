@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { ArrowRight, LockKeyhole, LogOut } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, LockKeyhole, LogOut } from "lucide-react";
 import { clearAuthSession, getStoredUser, storeAuthSession } from "./authSession";
 import styles from "./LoginGate.module.css";
 
@@ -21,6 +21,7 @@ interface LoginResponse {
 export default function LoginGate({ unlocked }: LoginGateProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -126,13 +127,24 @@ export default function LoginGate({ unlocked }: LoginGateProps) {
               </label>
               <label className={styles.field}>
                 <span>Password</span>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  autoComplete="current-password"
-                  required
-                />
+                <div className={styles.passwordInput}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    autoComplete="current-password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    className={styles.visibilityButton}
+                    onClick={() => setShowPassword((visible) => !visible)}
+                    aria-label={showPassword ? "Sembunyikan password" : "Lihat password"}
+                    aria-pressed={showPassword}
+                  >
+                    {showPassword ? <EyeOff size={19} /> : <Eye size={19} />}
+                  </button>
+                </div>
               </label>
 
               {error ? <p className={styles.error}>{error}</p> : null}

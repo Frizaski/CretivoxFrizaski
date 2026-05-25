@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import About from "./About";
 import CaraGue from "./CaraGue";
 import Contact from "./Contact";
@@ -11,7 +11,12 @@ import Perjalanan from "./Perjalanan";
 import Proof from "./Proof";
 import ScrollProgress from "./ScrollProgress";
 import SisiLain from "./SisiLain";
-import { hasAuthToken, subscribeAuthSession } from "./authSession";
+import {
+  clearAuthSession,
+  getAuthSessionExpiry,
+  hasAuthToken,
+  subscribeAuthSession,
+} from "./authSession";
 
 const lockedSections = [
   { id: "hero", label: "Home" },
@@ -31,6 +36,26 @@ const unlockedSections = [
 
 export default function PortfolioExperience() {
   const unlocked = useSyncExternalStore(subscribeAuthSession, hasAuthToken, () => false);
+
+  useEffect(() => {
+    if (!unlocked) return;
+
+    const expiresAt = getAuthSessionExpiry();
+    if (!expiresAt) {
+      clearAuthSession();
+      return;
+    }
+
+    const remainingTime = expiresAt - Date.now();
+    if (remainingTime <= 0) {
+      clearAuthSession();
+      return;
+    }
+
+    const logoutTimer = window.setTimeout(clearAuthSession, remainingTime);
+
+    return () => window.clearTimeout(logoutTimer);
+  }, [unlocked]);
 
   return (
     <>

@@ -50,10 +50,12 @@ Username: emilys
 Password: emilyspass
 ```
 
-Setelah login berhasil, `accessToken` dan `refreshToken` disimpan di
-`localStorage` browser untuk mempertahankan akses saat halaman dimuat ulang.
-Fitur ini dibuat sebagai demonstrasi autentikasi untuk kebutuhan test; proteksi
-data aplikasi produksi tetap perlu dilakukan di sisi server.
+Setelah login berhasil, `accessToken`, `refreshToken`, dan waktu kedaluwarsa
+sesi disimpan di `localStorage` browser. Sesi berlaku selama **24 jam** dan
+akses portfolio akan terkunci kembali secara otomatis setelah waktu tersebut
+habis. Field password juga menyediakan tombol untuk melihat atau menyembunyikan
+password. Fitur ini dibuat sebagai demonstrasi autentikasi untuk kebutuhan
+test; proteksi data aplikasi produksi tetap perlu dilakukan di sisi server.
 
 ## Menjalankan Project
 
