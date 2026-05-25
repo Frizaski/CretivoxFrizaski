@@ -61,6 +61,7 @@ export default function Hero() {
 
     const q5x = gsap.quickTo(blob5, "x", { duration: 0.95, ease: "power2.out" });
     const q5y = gsap.quickTo(blob5, "y", { duration: 0.95, ease: "power2.out" });
+    let isHeroHovered = false;
 
     // Entrance Animation for side UI elements, text, and images
     const tl = gsap.timeline();
@@ -82,23 +83,6 @@ export default function Hero() {
       { opacity: 1, x: 0, duration: 0.8, ease: "power2.out", stagger: 0.15 },
       "-=1.0"
     );
-
-    // Mouse events handling
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      // Update positions for stretching effect
-      q1x(x); q1y(y);
-      q2x(x); q2y(y);
-      q3x(x); q3y(y);
-      q4x(x); q4y(y);
-      q5x(x); q5y(y);
-
-      // Mouse text stretch tracking removed
-    };
 
     const startCycling = () => {
       if (cycleIntervalRef.current) return;
@@ -135,14 +119,12 @@ export default function Hero() {
       activeBwIndexRef.current = 0;
     };
 
-    const handleMouseEnter = (e: MouseEvent) => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        // Instantly snap to the cursor on enter to prevent sliding from (0,0)
-        gsap.set([blob1, blob2, blob3, blob4, blob5], { x, y });
-      }
+    const activateBlob = (x: number, y: number) => {
+      if (isHeroHovered) return;
+      isHeroHovered = true;
+
+      // Snap to the current cursor position before the reveal expands.
+      gsap.set([blob1, blob2, blob3, blob4, blob5], { x, y });
 
       // Animate radii to active sizes (stretchy gooey sizes)
       gsap.to(blob1, { attr: { r: 240 }, duration: 0.6, ease: "power3.out", overwrite: "auto" });
@@ -155,6 +137,8 @@ export default function Hero() {
     };
 
     const handleMouseLeave = () => {
+      isHeroHovered = false;
+
       // Animate radii back to 0
       gsap.to([blob1, blob2, blob3, blob4, blob5], {
         attr: { r: 0 },
@@ -166,6 +150,35 @@ export default function Hero() {
       // Reset scale tracking removed
 
       stopCycling();
+    };
+
+    // Mouse events handling
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const isInsideHero =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      if (!isInsideHero) return;
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      activateBlob(x, y);
+      q1x(x); q1y(y);
+      q2x(x); q2y(y);
+      q3x(x); q3y(y);
+      q4x(x); q4y(y);
+      q5x(x); q5y(y);
+    };
+
+    const handleMouseEnter = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      activateBlob(e.clientX - rect.left, e.clientY - rect.top);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -263,7 +276,7 @@ export default function Hero() {
 
           {/* 1. Base Layer (Full Color): Clipped inside the blob area */}
           <image
-            href="/Fierce Frizaski Al Fath/Fierce_Full_Color.png"
+            href="/Fierce Frizaski Al Fath/Fierce_Full_Color.webp"
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid slice"
@@ -274,7 +287,7 @@ export default function Hero() {
           <g mask="url(#reveal-mask)">
             {/* Grayscale background replica to keep background cohesive */}
             <image
-              href="/Fierce Frizaski Al Fath/Fierce_Full_Color.png"
+              href="/Fierce Frizaski Al Fath/Fierce_Full_Color.webp"
               width="100%"
               height="100%"
               preserveAspectRatio="xMidYMid slice"
@@ -284,7 +297,7 @@ export default function Hero() {
             {/* Rotated B&W cutouts that crossfade */}
             <image
               className="bw-image bw-0"
-              href="/Fierce Frizaski Al Fath/Fierce_Depan.png"
+              href="/Fierce Frizaski Al Fath/Fierce_Depan.webp"
               width="100%"
               height="100%"
               preserveAspectRatio="xMidYMid slice"
@@ -292,7 +305,7 @@ export default function Hero() {
             />
             <image
               className="bw-image bw-1"
-              href="/Fierce Frizaski Al Fath/Fierce_Kanan.png"
+              href="/Fierce Frizaski Al Fath/Fierce_Kanan.webp"
               width="100%"
               height="100%"
               preserveAspectRatio="xMidYMid slice"
@@ -300,7 +313,7 @@ export default function Hero() {
             />
             <image
               className="bw-image bw-2"
-              href="/Fierce Frizaski Al Fath/Fierce_Kiri.png"
+              href="/Fierce Frizaski Al Fath/Fierce_Kiri.webp"
               width="100%"
               height="100%"
               preserveAspectRatio="xMidYMid slice"

@@ -1,0 +1,44 @@
+.section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #000000;
+  color: #ffffff;
+  user-select: none;
+}
+
+.viewport {
+  width: 100%;
+  overflow: visible;
+}
+
+.track {
+  width: max-content;
+  padding-left: 50vw;
+  padding-right: clamp(3rem, 12vw, 12rem);
+  will-change: transform;
+}
+
+.sentence {
+  font-family: var(--font-headings);
+  font-size: clamp(3.3rem, 7.4vw, 8.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+.character {
+  color: #ffffff;
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .sentence {
+    font-size: clamp(2.65rem, 13vw, 4.5rem);
+  }
+}

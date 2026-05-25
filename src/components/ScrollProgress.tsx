@@ -15,6 +15,7 @@ const defaultSections: SectionItem[] = [
   { id: "portfolio", label: "Proof" },
   { id: "sisilain", label: "Sisi Lain" },
   { id: "perjalanan", label: "Perjalanan" },
+  { id: "carague", label: "Cara Gue" },
   { id: "penutupan", label: "Penutupan" },
   { id: "contact", label: "Contact" },
 ];

@@ -17,6 +17,8 @@ project, dan sisi kreatif melalui pengalaman scroll berbasis animasi.
 - **Sisi Lain** dengan pergantian karya visual dan video mengikuti scroll.
 - **Perjalanan** dengan image trail mengikuti cursor menggunakan thumbnail WebP
   teroptimasi.
+- **Cara Gue** dengan kalimat panjang putih dan efek typing yang bergerak
+  mengikuti scroll.
 - **Penutupan dan Contact** dengan sequence entrance scroll serta informasi
   kontak.
 - Halaman **Info** dengan background shader interaktif berbasis OGL/WebGL.
@@ -100,8 +102,9 @@ src/
 4. `Proof` setelah login
 5. `Sisi Lain`
 6. `Perjalanan`
-7. `Penutupan`
-8. `Contact`
+7. `Cara Gue`
+8. `Penutupan`
+9. `Contact`
 
 ## Deployment Vercel
 
@@ -111,4 +114,3 @@ framework Next.js dan menjalankan production build.
 
 Login demo tetap dapat digunakan saat website sudah dideploy karena request
 autentikasi dikirim dari browser ke API publik DummyJSON melalui HTTPS.
-

@@ -99,6 +99,8 @@ export default function Perjalanan() {
           ))}
         </p>
       </div>
+
+      <p className={styles.mousePrompt}>Gerakin Kursor Kamu!</p>
     </section>
   );
 }

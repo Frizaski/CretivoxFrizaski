@@ -91,6 +91,24 @@
   will-change: opacity;
 }
 
+.mousePrompt {
+  position: absolute;
+  right: clamp(5.5rem, 10vw, 11.5rem);
+  bottom: clamp(5rem, 12vh, 8rem);
+  z-index: 2;
+  margin: 0;
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.9rem, 1.25vw, 1.2rem);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0;
+  color: #ffffff;
+  transform: rotate(-9deg);
+  transform-origin: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 1200px) {
   .mainHeading {
@@ -113,6 +131,12 @@
     font-size: 1rem;
     max-width: 520px;
   }
+
+  .mousePrompt {
+    right: clamp(3.5rem, 11vw, 5rem);
+    bottom: clamp(4rem, 10vh, 5.5rem);
+    font-size: clamp(0.8rem, 2.4vw, 1rem);
+  }
 }
 
 @media (max-width: 500px) {
@@ -128,5 +152,12 @@
   .subtitle {
     font-size: 0.9rem;
     line-height: 1.6;
+  }
+
+  .mousePrompt {
+    right: 2.1rem;
+    bottom: 4rem;
+    font-size: 0.78rem;
+    transform: rotate(-7deg);
   }
 }
