@@ -77,7 +77,7 @@ export default function Contact() {
         <div className={styles.galleryImageWrapper3}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/Contact/3.jpeg"
+            src="/Contact/1.jpeg"
             alt="Gallery 3"
             className={styles.galleryImage}
           />
