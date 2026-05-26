@@ -100,10 +100,20 @@ export default function LoginGate({ unlocked }: LoginGateProps) {
               <p className={styles.message}>
                 Autentikasi berhasil. Seluruh portfolio sekarang sudah terbuka.
               </p>
-              <button type="button" className={styles.submitButton} onClick={handleContinue}>
+              <button
+                type="button"
+                className={styles.submitButton}
+                onClick={handleContinue}
+                suppressHydrationWarning
+              >
                 Lihat Project <ArrowRight size={17} />
               </button>
-              <button type="button" className={styles.logoutButton} onClick={clearAuthSession}>
+              <button
+                type="button"
+                className={styles.logoutButton}
+                onClick={clearAuthSession}
+                suppressHydrationWarning
+              >
                 <LogOut size={15} /> Keluar
               </button>
             </div>
@@ -123,6 +133,7 @@ export default function LoginGate({ unlocked }: LoginGateProps) {
                   onChange={(event) => setUsername(event.target.value)}
                   autoComplete="username"
                   required
+                  suppressHydrationWarning
                 />
               </label>
               <label className={styles.field}>
@@ -134,6 +145,7 @@ export default function LoginGate({ unlocked }: LoginGateProps) {
                     onChange={(event) => setPassword(event.target.value)}
                     autoComplete="current-password"
                     required
+                    suppressHydrationWarning
                   />
                   <button
                     type="button"
@@ -141,6 +153,7 @@ export default function LoginGate({ unlocked }: LoginGateProps) {
                     onClick={() => setShowPassword((visible) => !visible)}
                     aria-label={showPassword ? "Sembunyikan password" : "Lihat password"}
                     aria-pressed={showPassword}
+                    suppressHydrationWarning
                   >
                     {showPassword ? <EyeOff size={19} /> : <Eye size={19} />}
                   </button>
@@ -149,7 +162,12 @@ export default function LoginGate({ unlocked }: LoginGateProps) {
 
               {error ? <p className={styles.error}>{error}</p> : null}
 
-              <button className={styles.submitButton} type="submit" disabled={submitting}>
+              <button
+                className={styles.submitButton}
+                type="submit"
+                disabled={submitting}
+                suppressHydrationWarning
+              >
                 {submitting ? "Authenticating..." : "Lanjut Scrolling"}
                 {!submitting && <ArrowRight size={17} />}
               </button>

@@ -23,6 +23,8 @@ project, dan sisi kreatif melalui pengalaman scroll berbasis animasi.
   kontak.
 - Halaman **Info** dengan background shader interaktif berbasis OGL/WebGL.
 - Smooth scrolling berbasis **Lenis** yang disinkronkan dengan GSAP.
+- Musik latar opsional dengan toggle on/off; audio baru dimuat saat pengguna
+  memilih untuk menyalakannya.
 
 ## Teknologi
 
@@ -84,6 +86,7 @@ npm run build
 
 ```text
 public/
+  Audio/                    musik latar opsional
   Assets/                   foto profil dan logo
   Fierce Frizaski Al Fath/  visual hero
   Journey/                  dokumentasi perjalanan

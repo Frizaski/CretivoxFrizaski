@@ -6,6 +6,7 @@ import CaraGue from "./CaraGue";
 import Contact from "./Contact";
 import Hero from "./Hero";
 import LoginGate from "./LoginGate";
+import MusicToggle from "./MusicToggle";
 import Penutupan from "./Penutupan";
 import Perjalanan from "./Perjalanan";
 import Proof from "./Proof";
@@ -59,6 +60,7 @@ export default function PortfolioExperience() {
 
   return (
     <>
+      <MusicToggle />
       <ScrollProgress sections={unlocked ? unlockedSections : lockedSections} />
       <main>
         <Hero />
